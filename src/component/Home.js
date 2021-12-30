@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -8,12 +8,16 @@ import { HomeContainer } from "../styles/HomeStyles";
 
 // Ant Design components
 import { Layout, Input } from "antd";
-import { useGlobalState } from "../context/globalContext";
+import { useGlobalSetState, useGlobalState } from "../context/globalContext";
 const { Header, Footer, Sider, Content } = Layout;
 
 const Home = () => {
   const data = useGlobalState();
-  console.log(data);
+  const setData = useGlobalSetState();
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
   return (
     <HomeContainer>
       <Container>
@@ -25,11 +29,38 @@ const Home = () => {
           </Header>
           <Content className="content">
             {/* email name phonenumber */}
-            <Input placeholder="Enter your email..." value={data.email} />
+            <Input
+              placeholder="Enter your email..."
+              value={data.email}
+              type="email"
+              onChange={(e) => {
+                setData({ ...data, email: e.target.value });
+              }}
+              required
+            />
+            <Input
+              placeholder="Enter your name..."
+              type="text"
+              value={data.name}
+              onChange={(e) => {
+                setData({ ...data, name: e.target.value });
+              }}
+              required
+            />
+            <Input
+              placeholder="Enter your phone number..."
+              type="number"
+              value={data.phoneNumber}
+              onChange={(e) => {
+                setData({ ...data, phoneNumber: e.target.value });
+              }}
+              required
+            />
           </Content>
           <Footer className="buttons">
-            <button className="left">Previous</button>
-            <button className="right">Next</button>
+            <Link to="/audio">
+              <button className="right">Next</button>
+            </Link>
           </Footer>
         </Layout>
       </Container>
