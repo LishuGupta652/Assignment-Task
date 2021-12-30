@@ -71,7 +71,7 @@ const Declaration = () => {
                 className="right declaration "
                 disabled={!data.declaration}
               >
-                Next
+                Submit
               </button>
             </div>
           </Footer>
