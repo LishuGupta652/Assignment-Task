@@ -21,10 +21,10 @@ const Declaration = () => {
 
   const CheckboxHandler = (e) => {
     console.log(`checked = ${e.target.checked}`);
-    setData({ ...data, checkbox: e.target.checked });
+    setData({ ...data, declaration: e.target.checked });
   };
   return (
-    <HomeContainer>
+    <HomeContainer disabled={data.declaration}> 
       <Container>
         <Layout>
           <Header className="header">
@@ -39,7 +39,7 @@ const Declaration = () => {
               <button className="left">Previous</button>
             </Link>
             <Link to="/thankyou">
-              <button className="right" disabled={!data.checkbox}>
+              <button className="right" disabled={!data.declaration}>
                 Next
               </button>
             </Link>

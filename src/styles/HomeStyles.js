@@ -73,7 +73,7 @@ export const HomeContainer = styled.div`
       float: right;
     }
     button {
-      background-color: #34495e;
+      background-color: #424242;
       border: none;
       border-radius: 10px;
       color: white;
