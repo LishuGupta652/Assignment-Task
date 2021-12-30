@@ -30,17 +30,17 @@ const Home = () => {
           <Content className="content">
             {/* password checkPassword */}
             <Input
-              placeholder="Enter your email..."
+              placeholder="Enter your Password..."
               value={data.password}
-              type="email"
+              type="password"
               onChange={(e) => {
                 setData({ ...data, password: e.target.value });
               }}
               required
             />
             <Input
-              placeholder="Enter your name..."
-              type="text"
+              placeholder="Reenter your Password..."
+              type="password"
               value={data.checkPassowrd}
               onChange={(e) => {
                 setData({ ...data, checkPassowrd: e.target.value });

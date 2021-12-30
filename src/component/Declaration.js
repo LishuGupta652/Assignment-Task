@@ -21,6 +21,7 @@ const Home = () => {
 
   const CheckboxHandler = (e) => {
     console.log(`checked = ${e.target.checked}`);
+    setData({ ...data, checkbox: e.target.checked });
   };
   return (
     <HomeContainer>
@@ -40,7 +41,9 @@ const Home = () => {
               <button className="left">Previous</button>
             </Link>
             <Link to="/thankyou">
-              <button className="right">Next</button>
+              <button className="right" disabled={!data.checkbox}>
+                Next
+              </button>
             </Link>
           </Footer>
         </Layout>
