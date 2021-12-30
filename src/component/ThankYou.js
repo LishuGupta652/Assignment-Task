@@ -13,38 +13,34 @@ const ThankYou = () => {
   const [loading, setLoading] = useState(false);
   const [apiData, setApiData] = useState([data]);
 
-  useEffect(() => {
-    setLoading(true);
-    console.log(data);
-    // Fetch data from https://gitman-restapi.herokuapp.com/api/techwondoe/
-    axios
-      .get("https://gitman-restapi.herokuapp.com/api/techwondoe/", {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+  const fetchData = () => {
+    // geting data
+    fetch("https://gitman-restapi.herokuapp.com/api/techwondoe/")
+      .then((res) => res.json())
       .then((res) => {
-        console.log(res.data);
-        setLoading(false);
-        setApiData(res.data);
+        console.log(res);
+        setApiData(res);
       });
+  };
 
-    if (data.name !== "") {
-      // post data to https://gitman-restapi.herokuapp.com/api/techwondoe
-      axios
-        .post("https://gitman-restapi.herokuapp.com/api/techwondoe/", {
-          headers: {
-            "Content-Type": "application/json",
-          },
-          data: {
-            name: data.name,
-            email: data.email,
-            password: data.password,
-            declaration: data.declaration,
-          },
-        })
+  useEffect(() => {
+    fetchData();
+    console.log(data);
+    // sending post data
+    if (data.name && data.email && data.phoneNumber && data.password) {
+      fetch("https://gitman-restapi.herokuapp.com/api/techwondoe/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
         .then((res) => {
           console.log(res);
+          fetchData();
+        })
+        .catch((err) => {
+          console.log(err);
+          fetchData();
         });
     }
   }, []);
