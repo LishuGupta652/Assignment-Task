@@ -14,11 +14,12 @@ const { Header, Footer, Sider, Content } = Layout;
 const Declaration = () => {
   const [showError, setShowEror] = React.useState(false);
   const [error, setError] = React.useState("");
-  const data = useGlobalState();
 
   const navigate = useNavigate();
 
+  const data = useGlobalState();
   const setData = useGlobalSetState();
+
   useEffect(() => {
     console.log(data);
   }, [data]);
@@ -26,14 +27,6 @@ const Declaration = () => {
   const CheckboxHandler = (e) => {
     console.log(`checked = ${e.target.checked}`);
     setData({ ...data, declaration: e.target.checked });
-  };
-
-  const checkError = () => {
-    if (!data.declaration) {
-      setError("You must accept the declaration");
-    } else {
-      setError("");
-    }
   };
 
   const openNextPage = (e) => {
