@@ -39,6 +39,7 @@ export const HomeContainer = styled.div`
     input[type="email"],
     input[type="number"],
     input[type="password"],
+    input[type="tel"],
     select {
       width: 100%;
       padding: 12px 20px;

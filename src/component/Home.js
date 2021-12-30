@@ -48,7 +48,7 @@ const Home = () => {
               />
               <Input
                 placeholder="Enter your phone number..."
-                type="number"
+                type="tel"
                 value={data.phoneNumber}
                 onChange={(e) => {
                   setData({ ...data, phoneNumber: e.target.value });

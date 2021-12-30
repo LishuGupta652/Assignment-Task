@@ -39,9 +39,9 @@ const Password = () => {
             <Input
               placeholder="Reenter your Password..."
               type="password"
-              value={data.checkPassowrd}
+              value={data.checkPassword}
               onChange={(e) => {
-                setData({ ...data, checkPassowrd: e.target.value });
+                setData({ ...data, checkPassword: e.target.value });
               }}
               required
             />
