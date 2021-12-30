@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as yup from "yup";
 
 // StyledComponent
@@ -12,9 +12,12 @@ import { useGlobalSetState, useGlobalState } from "../context/globalContext";
 const { Header, Footer, Content } = Layout;
 
 const Home = () => {
+  const [showError, setShowEror] = React.useState(false);
   const [error, setError] = React.useState("");
   const data = useGlobalState();
   const setData = useGlobalSetState();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     console.log(data);
@@ -22,7 +25,7 @@ const Home = () => {
 
   let schema = yup.object().shape({
     name: yup.string().required(),
-    email: yup.string().email(),
+    email: yup.string().email().required(),
     phone: yup
       .number()
       .typeError("That doesn't look like a phone number")
@@ -43,13 +46,21 @@ const Home = () => {
         if (valid) {
           setError("");
         } else {
-          setError("Please fill out all fields");
+          setError("Please fill out all fields Correctly");
         }
       })
       .catch(function (err) {
         console.log(err.name, err.erors);
       });
   }, [data]);
+
+  const openNextPage = () => {
+    if (error === "") {
+      navigate("/audio");
+    } else {
+      setShowEror(true);
+    }
+  };
 
   return (
     <HomeContainer>
@@ -89,12 +100,12 @@ const Home = () => {
                 required
               />
             </form>
-            <div className="error">error: {error}</div>
+            {showError && <div className="error">error: {error}</div>}
           </Content>
           <Footer className="buttons">
-            <Link to="/audio">
-              <button className="right">Next</button>
-            </Link>
+            <button className="right" onClick={openNextPage}>
+              Next
+            </button>
           </Footer>
         </Layout>
       </Container>
