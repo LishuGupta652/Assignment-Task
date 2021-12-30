@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -14,7 +14,7 @@ const { Header, Footer, Sider, Content } = Layout;
 const Declaration = () => {
   const data = useGlobalState();
   const setData = useGlobalSetState();
-
+  const [error, setError] = useState("teset");
   useEffect(() => {
     console.log(data);
   }, [data]);
@@ -23,8 +23,16 @@ const Declaration = () => {
     console.log(`checked = ${e.target.checked}`);
     setData({ ...data, declaration: e.target.checked });
   };
+
+  const checkError = () => {
+    if (!data.declaration) {
+      setError("You must accept the declaration");
+    } else {
+      setError("");
+    }
+  };
   return (
-    <HomeContainer disabled={data.declaration}> 
+    <HomeContainer declaration={data.declaration}>
       <Container>
         <Layout>
           <Header className="header">
@@ -32,16 +40,24 @@ const Declaration = () => {
           </Header>
           <Content className="content">
             {/* Check box */}
-            <Checkbox onChange={CheckboxHandler}>Checkbox</Checkbox>
+            <Checkbox onChange={CheckboxHandler}>
+              I agree to the terms and conditions
+            </Checkbox>
           </Content>
           <Footer className="buttons">
+            <div className="error">{error}</div>
             <Link to="/password">
               <button className="left">Previous</button>
             </Link>
             <Link to="/thankyou">
-              <button className="right" disabled={!data.declaration}>
-                Next
-              </button>
+              <div className="" onClick={checkError}>
+                <button
+                  className="right declaration "
+                  disabled={!data.declaration}
+                >
+                  Next
+                </button>
+              </div>
             </Link>
           </Footer>
         </Layout>

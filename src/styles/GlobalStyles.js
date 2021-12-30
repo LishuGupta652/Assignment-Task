@@ -3,7 +3,6 @@ import styled, { css } from "styled-components";
 export const Container = styled.div`
   flex-grow: 1;
   margin: 0 auto;
-  padding: 50px;
   width: auto;
   height: 100%;
   font-size: 1.5em;

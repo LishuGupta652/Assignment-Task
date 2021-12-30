@@ -5,20 +5,20 @@ export const HomeContainer = styled.div`
   justify-content: center;
   align-items: center;
   margin: 200px 0;
+  position: relative;
+  .error {
+    text-align: center;
+    color: red;
+  }
   h1 {
     text-align: center;
     padding: 30px 0;
   }
 
   .header {
-    span {
-      /* MAGIC */
-      background-image: linear-gradient(
-        transparent 64px,
-        #f243b3 50%,
-        #ffca47 100%
-      );
-    }
+    border-radius: 10px;
+    background-color: #f5f5f5;
+    margin-bottom: 50px;
   }
   span {
     /* MAGIC */
@@ -64,8 +64,10 @@ export const HomeContainer = styled.div`
       background-color: #45a049;
     }
   }
+
   .buttons {
     padding: 30px 20px;
+    margin: 50px;
     .left {
       float: left;
     }
@@ -84,6 +86,10 @@ export const HomeContainer = styled.div`
       font-size: 16px;
       margin: 4px 2px;
       cursor: pointer;
+    }
+    .declaration {
+      background-color: ${(props) =>
+        props.declaration ? "#323232" : "#828282"};
     }
   }
 `;
