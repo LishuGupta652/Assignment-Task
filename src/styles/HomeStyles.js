@@ -68,6 +68,19 @@ export const HomeContainer = styled.div`
     }
   }
 
+  button {
+    background-color: #424242;
+    border: none;
+    border-radius: 10px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  }
   .buttons {
     padding: 30px 20px;
     margin: 50px;
@@ -76,19 +89,6 @@ export const HomeContainer = styled.div`
     }
     .right {
       float: right;
-    }
-    button {
-      background-color: #424242;
-      border: none;
-      border-radius: 10px;
-      color: white;
-      padding: 15px 32px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      cursor: pointer;
     }
     .declaration {
       background-color: ${(props) =>

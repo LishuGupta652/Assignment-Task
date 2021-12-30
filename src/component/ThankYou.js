@@ -3,16 +3,27 @@ import { useGlobalSetState, useGlobalState } from "../context/globalContext";
 import { Container } from "../styles/GlobalStyles";
 import { HomeContainer } from "../styles/HomeStyles";
 import axios from "axios";
+import { Link } from "react-router-dom";
 const ThankYou = () => {
   const data = useGlobalState();
   const setData = useGlobalSetState();
 
   const [loading, setLoading] = useState(false);
-
+  const [apiData, setApiData] = useState([]);
   useEffect(() => {
     setLoading(true);
     axios
-      .post("http://localhost:3000/api/techwondoe", data)
+      .get("http://localhost:3000/api/techwondow/")
+      .then((res) => {
+        setLoading(false);
+        setApiData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    axios
+      .post("http://localhost:3000/api/techwondoe/", data)
       .then((response) => {
         setLoading(false);
         console.log(response);
@@ -24,6 +35,9 @@ const ThankYou = () => {
           checkPassword: "",
           declaration: "",
         });
+      })
+      .catch((err) => {
+        console.log(err);
       });
 
     console.log(data);
