@@ -55,7 +55,8 @@ const Home = () => {
       });
   }, [data]);
 
-  const openNextPage = () => {
+  const openNextPage = (e) => {
+    e.preventDefault();
     if (error === "") {
       navigate("/audio");
     } else {

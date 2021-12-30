@@ -95,4 +95,6 @@ export const HomeContainer = styled.div`
         props.declaration ? "#323232" : "#828282"};
     }
   }
+  .user_name {
+  }
 `;
