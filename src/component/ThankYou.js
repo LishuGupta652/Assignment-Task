@@ -8,7 +8,9 @@ const ThankYou = () => {
   return (
     <HomeContainer>
       <Container>
-        <h1>Thank you {data.name}</h1>
+        <h1>
+          Thank you <span className="user_name">{data.name} </span>
+        </h1>
       </Container>
     </HomeContainer>
   );

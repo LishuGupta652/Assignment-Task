@@ -45,6 +45,7 @@ const Home = () => {
       .then((valid) => {
         if (valid) {
           setError("");
+          setShowEror(false);
         } else {
           setError("Please fill out all fields Correctly");
         }
@@ -69,9 +70,9 @@ const Home = () => {
           <Header className="header">
             <h1>STEP 01</h1>
           </Header>
-          <Content className="content">
-            {/* email name phonenumber */}
-            <form action="">
+          <form>
+            <Content className="content">
+              {/* email name phonenumber */}
               <Input
                 placeholder="Enter your email..."
                 value={data.email}
@@ -99,14 +100,14 @@ const Home = () => {
                 }}
                 required
               />
-            </form>
-            {showError && <div className="error">error: {error}</div>}
-          </Content>
-          <Footer className="buttons">
-            <button className="right" onClick={openNextPage}>
-              Next
-            </button>
-          </Footer>
+              {showError && <div className="error"> {error}</div>}
+            </Content>
+            <Footer className="buttons">
+              <button className="right" onClick={openNextPage}>
+                Next
+              </button>
+            </Footer>
+          </form>
         </Layout>
       </Container>
     </HomeContainer>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 // StyledComponent
@@ -12,9 +12,13 @@ import { useGlobalSetState, useGlobalState } from "../context/globalContext";
 const { Header, Footer, Sider, Content } = Layout;
 
 const Declaration = () => {
+  const [showError, setShowEror] = React.useState(false);
+  const [error, setError] = React.useState("");
   const data = useGlobalState();
+
+  const navigate = useNavigate();
+
   const setData = useGlobalSetState();
-  const [error, setError] = useState("teset");
   useEffect(() => {
     console.log(data);
   }, [data]);
@@ -31,6 +35,17 @@ const Declaration = () => {
       setError("");
     }
   };
+
+  const openNextPage = (e) => {
+    e.preventDefault();
+    if (data.declaration) {
+      setError("");
+      navigate("/thankyou");
+    } else {
+      setError("You must accept the declaration");
+    }
+  };
+
   return (
     <HomeContainer declaration={data.declaration}>
       <Container>
@@ -43,22 +58,22 @@ const Declaration = () => {
             <Checkbox onChange={CheckboxHandler}>
               I agree to the terms and conditions
             </Checkbox>
+            {showError && <div className="error">error: {error}</div>}
           </Content>
+
           <Footer className="buttons">
-            <div className="error">{error}</div>
             <Link to="/password">
               <button className="left">Previous</button>
             </Link>
-            <Link to="/thankyou">
-              <div className="" onClick={checkError}>
-                <button
-                  className="right declaration "
-                  disabled={!data.declaration}
-                >
-                  Next
-                </button>
-              </div>
-            </Link>
+
+            <div className="" onClick={openNextPage}>
+              <button
+                className="right declaration "
+                disabled={!data.declaration}
+              >
+                Next
+              </button>
+            </div>
           </Footer>
         </Layout>
       </Container>
