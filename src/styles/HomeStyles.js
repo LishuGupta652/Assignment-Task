@@ -9,6 +9,8 @@ export const HomeContainer = styled.div`
   .error {
     text-align: center;
     color: red;
+    font-size: 16px;
+    padding: 10px 0;
   }
   h1 {
     text-align: center;

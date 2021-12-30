@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import * as yup from "yup";
 
 // StyledComponent
 import { Container } from "../styles/GlobalStyles";
@@ -9,15 +9,29 @@ import { HomeContainer } from "../styles/HomeStyles";
 // Ant Design components
 import { Layout, Input } from "antd";
 import { useGlobalSetState, useGlobalState } from "../context/globalContext";
-const { Header, Footer, Sider, Content } = Layout;
+const { Header, Footer, Content } = Layout;
 
 const Home = () => {
+  const [error, setError] = React.useState("");
   const data = useGlobalState();
   const setData = useGlobalSetState();
 
   useEffect(() => {
     console.log(data);
   }, [data]);
+
+  let schema = yup.object().shape({
+    name: yup.string().required(),
+    email: yup.string().email(),
+    phone: yup
+      .number()
+      .typeError("That doesn't look like a phone number")
+      .positive("A phone number can't start with a minus")
+      .integer("A phone number can't include a decimal point")
+      .min(8)
+      .required("A phone number is required"),
+  });
+
   return (
     <HomeContainer>
       <Container>
@@ -56,6 +70,7 @@ const Home = () => {
                 required
               />
             </form>
+            <div className="error">error: {error}</div>
           </Content>
           <Footer className="buttons">
             <Link to="/audio">
