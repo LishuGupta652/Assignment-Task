@@ -20,10 +20,6 @@ const Declaration = () => {
   const data = useGlobalState();
   const setData = useGlobalSetState();
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   const CheckboxHandler = (e) => {
     console.log(`checked = ${e.target.checked}`);
     setData({ ...data, declaration: e.target.checked });
