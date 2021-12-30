@@ -11,7 +11,7 @@ import { Layout, Input } from "antd";
 import { useGlobalSetState, useGlobalState } from "../context/globalContext";
 const { Header, Footer, Sider, Content } = Layout;
 
-const Home = () => {
+const Password = () => {
   const data = useGlobalState();
   const setData = useGlobalSetState();
 
@@ -23,9 +23,7 @@ const Home = () => {
       <Container>
         <Layout>
           <Header className="header">
-            <h1>
-              Thank you for your time and interest in <span> Techwondoe. </span>
-            </h1>
+            <h1>STEP 03</h1>
           </Header>
           <Content className="content">
             {/* password checkPassword */}
@@ -62,4 +60,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Password;

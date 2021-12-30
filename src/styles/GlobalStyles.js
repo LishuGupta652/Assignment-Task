@@ -7,6 +7,8 @@ export const Container = styled.div`
   width: auto;
   height: 100%;
   background-color: #eeeeff;
+  border-radius: 5px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 
   @media (min-width: 1024px) {
     max-width: 960px;

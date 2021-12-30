@@ -12,7 +12,7 @@ import { useGlobalSetState, useGlobalState } from "../context/globalContext";
 import { AudioOutlined } from "@ant-design/icons/lib/icons";
 const { Header, Footer, Sider, Content } = Layout;
 
-const Home = () => {
+const Audio = () => {
   const data = useGlobalState();
   const setData = useGlobalSetState();
 
@@ -24,9 +24,7 @@ const Home = () => {
       <Container>
         <Layout>
           <Header className="header">
-            <h1>
-              Thank you for your time and interest in <span> Techwondoe. </span>
-            </h1>
+            <h1>STEP 02</h1>
           </Header>
           <Content className="content">
             {/* Audio */}
@@ -46,4 +44,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Audio;

@@ -23,39 +23,39 @@ const Home = () => {
       <Container>
         <Layout>
           <Header className="header">
-            <h1>
-              Thank you for your time and interest in <span> Techwondoe. </span>
-            </h1>
+            <h1>STEP 01</h1>
           </Header>
           <Content className="content">
             {/* email name phonenumber */}
-            <Input
-              placeholder="Enter your email..."
-              value={data.email}
-              type="email"
-              onChange={(e) => {
-                setData({ ...data, email: e.target.value });
-              }}
-              required
-            />
-            <Input
-              placeholder="Enter your name..."
-              type="text"
-              value={data.name}
-              onChange={(e) => {
-                setData({ ...data, name: e.target.value });
-              }}
-              required
-            />
-            <Input
-              placeholder="Enter your phone number..."
-              type="number"
-              value={data.phoneNumber}
-              onChange={(e) => {
-                setData({ ...data, phoneNumber: e.target.value });
-              }}
-              required
-            />
+            <form action="">
+              <Input
+                placeholder="Enter your email..."
+                value={data.email}
+                type="email"
+                onChange={(e) => {
+                  setData({ ...data, email: e.target.value });
+                }}
+                required
+              />
+              <Input
+                placeholder="Enter your name..."
+                type="text"
+                value={data.name}
+                onChange={(e) => {
+                  setData({ ...data, name: e.target.value });
+                }}
+                required
+              />
+              <Input
+                placeholder="Enter your phone number..."
+                type="number"
+                value={data.phoneNumber}
+                onChange={(e) => {
+                  setData({ ...data, phoneNumber: e.target.value });
+                }}
+                required
+              />
+            </form>
           </Content>
           <Footer className="buttons">
             <Link to="/audio">
