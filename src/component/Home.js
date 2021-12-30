@@ -32,6 +32,25 @@ const Home = () => {
       .required("A phone number is required"),
   });
 
+  useEffect(() => {
+    schema
+      .isValid({
+        name: data.name,
+        email: data.email,
+        phone: data.phoneNumber,
+      })
+      .then((valid) => {
+        if (valid) {
+          setError("");
+        } else {
+          setError("Please fill out all fields");
+        }
+      })
+      .catch(function (err) {
+        console.log(err.name, err.erors);
+      });
+  }, [data]);
+
   return (
     <HomeContainer>
       <Container>

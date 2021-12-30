@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
-import styled from "styled-components";
+import * as yup from "yup";
 
 // StyledComponent
 import { Container } from "../styles/GlobalStyles";
@@ -14,6 +14,29 @@ const { Header, Footer, Sider, Content } = Layout;
 const Password = () => {
   const data = useGlobalState();
   const setData = useGlobalSetState();
+
+  let schema = yup.object().shape({
+    phone: yup
+      .string()
+      // regexr.com/6anqd
+      .matches(/(\+91\ )[6-9]{1}[0-9 ]{4}[0-9 ]{4}[0-9]{3}/, {
+        message: "Invalid Indian number",
+        excludeEmptyString: false,
+      })
+      .required(),
+    email: yup.string().required().email(),
+    password: yup.string().required().min(8),
+    confirmPassword: yup
+      .string()
+      .required()
+      .oneOf([yup.ref("password")], "Passwords do not match"),
+    agree: yup
+      .boolean()
+      .oneOf(
+        [true],
+        "It is essential to accept our Privacy Policy to register."
+      ),
+  });
 
   useEffect(() => {
     console.log(data);
