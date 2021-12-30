@@ -1,12 +1,17 @@
-import React, { useState } from "react";
-import { useGlobalState } from "../context/globalContext";
+import React, { useEffect, useState } from "react";
+import { useGlobalSetState, useGlobalState } from "../context/globalContext";
 import { Container } from "../styles/GlobalStyles";
 import { HomeContainer } from "../styles/HomeStyles";
 
 const ThankYou = () => {
   const data = useGlobalState();
+  const setData = useGlobalSetState();
+
   const [loading, setLoading] = useState();
 
+  useEffect(() => {
+    console.log(data);
+  });
   return (
     <HomeContainer>
       <Container>

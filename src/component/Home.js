@@ -19,10 +19,6 @@ const Home = () => {
 
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
-
   let schema = yup.object().shape({
     name: yup.string().required(),
     email: yup.string().email().required(),

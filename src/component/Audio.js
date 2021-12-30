@@ -16,9 +16,6 @@ const Audio = () => {
   const data = useGlobalState();
   const setData = useGlobalSetState();
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
   return (
     <HomeContainer>
       <Container>

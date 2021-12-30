@@ -29,10 +29,6 @@ const Password = () => {
   });
 
   useEffect(() => {
-    console.log(data);
-  }, [data]);
-
-  useEffect(() => {
     schema
       .isValid({
         password: data.password,
