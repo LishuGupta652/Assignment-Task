@@ -10,7 +10,7 @@ export const GlobalProvider = ({ children }) => {
     phoneNumber: "",
     audio: [],
     password: "",
-    reEnterPassword: "",
+    checkPassword: "",
     declaration: false,
   });
 

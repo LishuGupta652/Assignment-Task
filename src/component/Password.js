@@ -28,31 +28,22 @@ const Home = () => {
             </h1>
           </Header>
           <Content className="content">
-            {/* email name phonenumber */}
+            {/* password checkPassword */}
             <Input
               placeholder="Enter your email..."
-              value={data.email}
+              value={data.password}
               type="email"
               onChange={(e) => {
-                setData({ ...data, email: e.target.value });
+                setData({ ...data, password: e.target.value });
               }}
               required
             />
             <Input
               placeholder="Enter your name..."
               type="text"
-              value={data.name}
+              value={data.checkPassowrd}
               onChange={(e) => {
-                setData({ ...data, name: e.target.value });
-              }}
-              required
-            />
-            <Input
-              placeholder="Enter your phone number..."
-              type="number"
-              value={data.phoneNumber}
-              onChange={(e) => {
-                setData({ ...data, phoneNumber: e.target.value });
+                setData({ ...data, checkPassowrd: e.target.value });
               }}
               required
             />
