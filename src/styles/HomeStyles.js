@@ -169,4 +169,64 @@ export const HomeContainer = styled.div`
       opacity: 1;
     }
   }
+
+  steps-content {
+    min-height: 200px;
+    margin-top: 16px;
+    padding-top: 80px;
+    text-align: center;
+    background-color: #fafafa;
+    border: 1px dashed #e9e9e9;
+    border-radius: 2px;
+  }
+
+  .steps-action {
+    margin-top: 24px;
+  }
+`;
+
+export const AntContainer = styled.div`
+  .container {
+    flex-grow: 1;
+    margin: 0 auto;
+    width: auto;
+    height: 100%;
+    font-size: 1.5em;
+    border-radius: 5px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    padding: 30px;
+    @media (min-width: 1024px) {
+      max-width: 960px;
+    }
+
+    @media (min-width: 1216px) {
+      max-width: 1152px;
+    }
+    @media (min-width: 1408px) {
+      max-width: 1244px;
+    }
+  }
+  .steps-content {
+    min-height: 200px;
+    margin-top: 16px;
+    padding-top: 80px;
+    text-align: center;
+    background-color: #fafafa;
+    border: 1px dashed #e9e9e9;
+    border-radius: 2px;
+  }
+
+  .steps-action {
+    margin-top: 24px;
+  }
+`;
+
+export const Container = styled.div`
+  ${(props) =>
+    props.fluid &&
+    `
+    padding: 0;
+    margin: 0;
+    max-width: 100%;
+  `}
 `;

@@ -25,6 +25,7 @@ const Audio = () => {
           </Header>
           <Content className="content">
             {/* Audio */}
+            {/* start Recording */}
             <AudioOutlined />
           </Content>
           <Footer className="buttons">
