@@ -5,11 +5,13 @@ import Audio from "./component/Audio";
 import Password from "./component/Password";
 import Declaration from "./component/Declaration";
 import ThankYou from "./component/ThankYou";
+import Ant from "./Ant";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/withAnt" element={<Ant />} />
         <Route path="/" element={<Home />} />
         <Route path="/audio" element={<Audio />} />
         <Route path="/password" element={<Password />} />

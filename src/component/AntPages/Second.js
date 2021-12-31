@@ -4,9 +4,10 @@ import * as yup from "yup";
 // Ant Design components
 import { Layout, Input } from "antd";
 import { useGlobalSetState, useGlobalState } from "../../context/globalContext";
+import { AudioMutedOutlined } from "@ant-design/icons/lib/icons";
 const { Header, Footer, Content } = Layout;
 
-const First = () => {
+const Second = () => {
   const [showError, setShowEror] = React.useState(false);
   const [error, setError] = React.useState("");
   const data = useGlobalState();
@@ -48,9 +49,9 @@ const First = () => {
     <Layout>
       {/* Audio */}
       {/* start Recording */}
-      <AudioOutlined />
+      <AudioMutedOutlined />
     </Layout>
   );
 };
 
-export default First;
+export default Second;

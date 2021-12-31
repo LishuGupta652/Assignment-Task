@@ -4,9 +4,8 @@ import { Steps, Button, message } from "antd";
 import { AntContainer } from "./styles/HomeStyles";
 
 import "antd/dist/antd.css";
-import { Container } from "./styles/GlobalStyles";
-import Home from "./component/Home";
-import First from "./component/AntPages/First";
+import { First, Fourth, Second, Third } from "./component/AntPages";
+
 const { Step } = Steps;
 
 const steps = [
@@ -15,16 +14,16 @@ const steps = [
     content: <First />,
   },
   {
-    title: "audio",
-    content: "Second-content",
+    title: "Audio",
+    content: <Second />,
   },
   {
-    title: "password",
-    content: "password",
+    title: "Password",
+    content: <Third />,
   },
   {
     title: "third",
-    content: "Declaration",
+    content: <Fourth />,
   },
 ];
 

@@ -7,7 +7,7 @@ import { GlobalProvider } from "./context/globalContext";
 ReactDOM.render(
   <React.StrictMode>
     <GlobalProvider>
-      <Ant />
+      <App />
     </GlobalProvider>
   </React.StrictMode>,
   document.getElementById("root")
