@@ -8,7 +8,7 @@ export const GlobalProvider = ({ children }) => {
     name: "",
     email: "",
     phoneNumber: "",
-    audio: [],
+    audio: "",
     password: "",
     checkPassword: "",
     declaration: false,

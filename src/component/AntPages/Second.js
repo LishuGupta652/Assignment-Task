@@ -4,7 +4,6 @@ import * as yup from "yup";
 // Ant Design components
 import { Layout, Input } from "antd";
 import { useGlobalSetState, useGlobalState } from "../../context/globalContext";
-import { AudioMutedOutlined } from "@ant-design/icons/lib/icons";
 const { Header, Footer, Content } = Layout;
 
 const SpeechRecognition =
@@ -24,10 +23,17 @@ const Second = ({ error, setError }) => {
   const [note, setNote] = React.useState(null);
 
   useEffect(() => {
+    setError("");
+    if (data.audio === null) {
+      setError("Please enter your note");
+    }
     handleListen();
   }, [isListening]);
 
   const handleListen = () => {
+    if (data.audio === null) {
+      setError("Please enter your note");
+    }
     if (isListening) {
       mic.start();
       mic.onend = () => {
@@ -46,18 +52,18 @@ const Second = ({ error, setError }) => {
         .join("");
 
       setNote(transcript);
+      setData({ ...data, audio: transcript });
+      console.log(data);
       mic.onerror = (event) => {
         console.log(event.error);
       };
     };
   };
 
-  const handleSaveNote = () => {
-    if (note !== null) {
-      setData({ ...data, audio: note });
-    }
+  const handleClear = () => {
+    setNote("");
+    setData({ ...data, audio: "" });
   };
-
   return (
     <Layout>
       {/* Audio */}
@@ -69,7 +75,7 @@ const Second = ({ error, setError }) => {
           {isListening ? "Stop" : "Start"}
         </button>
 
-        <button onClick={() => setNote("")}>clear</button>
+        <button onClick={() => handleClear()}>clear</button>
       </div>
       <div className="note">{note}</div>
     </Layout>
