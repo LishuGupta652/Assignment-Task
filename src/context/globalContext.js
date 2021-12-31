@@ -12,6 +12,7 @@ export const GlobalProvider = ({ children }) => {
     password: "",
     checkPassword: "",
     declaration: false,
+    error: "",
   });
 
   return (
