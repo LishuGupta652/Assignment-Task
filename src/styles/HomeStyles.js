@@ -233,6 +233,13 @@ export const AntContainer = styled.div`
 `;
 
 export const Container = styled.div`
+  .show-cards {
+    margin: 0 auto;
+    ul {
+      display: flex;
+      flex-wrap: wrap;
+    }
+  }
   ${(props) =>
     props.fluid &&
     `

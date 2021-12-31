@@ -75,14 +75,12 @@ const Ant = () => {
       })
         .then((res) => res.json())
         .then((res) => {
-          console.log(res);
-          message.success("Processing complete!");
-          console.log(res);
+          message.success("Data Submitted thank you!");
           setLoading(false);
-          fetchData();
         })
         .catch((err) => {
           console.log(err);
+          message.success("Processing complete!");
           setLoading(false);
           fetchData();
         });
