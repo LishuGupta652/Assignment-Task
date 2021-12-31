@@ -41,7 +41,6 @@ const First = ({ error, setError }) => {
       .catch(function (err) {
         console.log(err.name, err.erors);
       });
-    console.log(data, error);
   }, [data]);
 
   return (
@@ -74,7 +73,6 @@ const First = ({ error, setError }) => {
         }}
         required
       />
-      {showError && <div className="error"> {error}</div>}
     </form>
   );
 };

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { Steps, Button, message } from "antd";
 import { AntContainer } from "./styles/HomeStyles";
@@ -10,8 +10,8 @@ import { useGlobalSetState, useGlobalState } from "./context/globalContext";
 const { Step } = Steps;
 
 const Ant = () => {
-  const [current, setCurrent] = React.useState(0);
-  const [error, setError] = React.useState("");
+  const [current, setCurrent] = useState(0);
+  const [error, setError] = useState("");
 
   const data = useGlobalState();
   const setData = useGlobalSetState();
@@ -37,6 +37,7 @@ const Ant = () => {
 
   const next = () => {
     if (error) {
+      message.error(error);
       return;
     }
     setCurrent(current + 1);
@@ -46,9 +47,50 @@ const Ant = () => {
     setCurrent(current - 1);
   };
 
+  const [loading, setLoading] = useState(false);
+  const [apiData, setApiData] = useState([data]);
+
+  const fetchData = () => {
+    // geting data
+    fetch("https://gitman-restapi.herokuapp.com/api/techwondoe/")
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        setApiData(res);
+      });
+  };
+
   const handleSubmit = () => {
+    if (error) {
+      message.error(error);
+      return;
+    }
+    setLoading(true);
+    if (data.name && data.email && data.phoneNumber && data.password) {
+      console.log("Sending data " + data);
+      fetch("https://gitman-restapi.herokuapp.com/api/techwondoe/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
+        .then((res) => res.json())
+        .then((res) => {
+          console.log(res);
+          message.success("Processing complete!");
+          console.log(res);
+          setLoading(false);
+          fetchData();
+        })
+        .catch((err) => {
+          console.log(err);
+          setLoading(false);
+          fetchData();
+        });
+    } else {
+      setLoading(false);
+      message.error("Please fill all the fields");
+    }
     console.log(data);
-    message.success("Processing complete!");
   };
 
   return (
@@ -71,7 +113,11 @@ const Ant = () => {
               </Button>
             )}
             {current === steps.length - 1 && (
-              <Button type="primary" onClick={() => handleSubmit()}>
+              <Button
+                type={error ? "dashed" : "primary"}
+                onClick={() => handleSubmit()}
+                loading={loading}
+              >
                 Done
               </Button>
             )}

@@ -13,11 +13,7 @@ const Third = ({ error, setError }) => {
 
   let schema = yup.object().shape({
     password: yup.string().required().min(8),
-    checkPassword: yup
-      .string()
-      .required()
-      .min(8)
-      .oneOf([yup.ref("password"), null], "Passwords must match"),
+    checkPassword: yup.string().required().min(8),
   });
 
   useEffect(() => {
@@ -27,14 +23,16 @@ const Third = ({ error, setError }) => {
         checkPassword: data.checkPassword,
       })
       .then((valid) => {
-        console.log(valid);
-        if (data.password !== data.checkPassword) {
-          setError("Passwords must match");
-          setShowEror(true);
-        }
-
         if (valid) {
+          setError("");
+          setShowEror(false);
+          if (data.password !== data.checkPassword) {
+            setError("Passwords must match");
+            setShowEror(true);
+          }
         } else {
+          setError("Passwords must be atleast 8 characters");
+          setShowEror(true);
         }
       })
       .catch(function (err) {
@@ -63,7 +61,6 @@ const Third = ({ error, setError }) => {
         }}
         required
       />
-      {showError && <div className="error"> {error}</div>}
     </form>
   );
 };
