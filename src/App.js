@@ -6,6 +6,7 @@ import Password from "./component/Password";
 import Declaration from "./component/Declaration";
 import ThankYou from "./component/ThankYou";
 import Ant from "./Ant";
+import ShowData from "./component/ShowData";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route path="/password" element={<Password />} />
         <Route path="/declaration" element={<Declaration />} />
         <Route path="/thankyou" element={<ThankYou />} />
+        <Route path="/*" element={<ShowData />} />
       </Routes>
     </BrowserRouter>
   );
