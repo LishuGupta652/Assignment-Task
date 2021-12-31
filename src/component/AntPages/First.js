@@ -6,25 +6,25 @@ import { Layout, Input } from "antd";
 import { useGlobalSetState, useGlobalState } from "../../context/globalContext";
 const { Header, Footer, Content } = Layout;
 
-const First = () => {
+const First = ({ error, setError }) => {
   const [showError, setShowEror] = React.useState(false);
-  const [error, setError] = React.useState("");
   const data = useGlobalState();
   const setData = useGlobalSetState();
 
   let schema = yup.object().shape({
     name: yup.string().required(),
     email: yup.string().email().required(),
-    phone: yup
-      .number()
-      .typeError("That doesn't look like a phone number")
-      .positive("A phone number can't start with a minus")
-      .integer("A phone number can't include a decimal point")
-      .min(8)
-      .required("A phone number is required"),
+    phone: yup.number().min(8).required("A phone number is required"),
   });
 
   useEffect(() => {
+    if (data.name === "" || data.email === "" || data.phoneNumber === "") {
+      setError("Please fill out all fields ");
+      setShowEror(true);
+    } else {
+      setError("");
+      setShowEror(false);
+    }
     schema
       .isValid({
         name: data.name,
@@ -33,15 +33,15 @@ const First = () => {
       })
       .then((valid) => {
         if (valid) {
-          setError("");
           setShowEror(false);
         } else {
-          setError("Please fill out all fields Correctly");
+          setShowEror(true);
         }
       })
       .catch(function (err) {
         console.log(err.name, err.erors);
       });
+    console.log(data, error);
   }, [data]);
 
   return (

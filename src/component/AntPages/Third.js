@@ -6,41 +6,39 @@ import { Layout, Input } from "antd";
 import { useGlobalSetState, useGlobalState } from "../../context/globalContext";
 const { Header, Footer, Content } = Layout;
 
-const Third = () => {
+const Third = ({ error, setError }) => {
   const [showError, setShowEror] = React.useState(false);
-  const [error, setError] = React.useState("");
   const data = useGlobalState();
   const setData = useGlobalSetState();
 
   let schema = yup.object().shape({
-    name: yup.string().required(),
-    email: yup.string().email().required(),
-    phone: yup
-      .number()
-      .typeError("That doesn't look like a phone number")
-      .positive("A phone number can't start with a minus")
-      .integer("A phone number can't include a decimal point")
+    password: yup.string().required().min(8),
+    checkPassword: yup
+      .string()
+      .required()
       .min(8)
-      .required("A phone number is required"),
+      .oneOf([yup.ref("password"), null], "Passwords must match"),
   });
 
   useEffect(() => {
     schema
       .isValid({
-        name: data.name,
-        email: data.email,
-        phone: data.phoneNumber,
+        password: data.password,
+        checkPassword: data.checkPassword,
       })
       .then((valid) => {
+        console.log(valid);
+        if (data.password !== data.checkPassword) {
+          setError("Passwords must match");
+          setShowEror(true);
+        }
+
         if (valid) {
-          setError("");
-          setShowEror(false);
         } else {
-          setError("Please fill out all fields Correctly");
         }
       })
       .catch(function (err) {
-        console.log(err.name, err.erors);
+        console.log(err.name, err);
       });
   }, [data]);
 

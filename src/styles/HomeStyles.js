@@ -206,6 +206,11 @@ export const AntContainer = styled.div`
       max-width: 1244px;
     }
   }
+  .error {
+    color: red;
+    font-size: 16px;
+    padding: 20px 0;
+  }
   .steps-content {
     min-height: 200px;
     margin-top: 16px;
