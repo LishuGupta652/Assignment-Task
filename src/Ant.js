@@ -22,7 +22,7 @@ const steps = [
     content: <Third />,
   },
   {
-    title: "third",
+    title: "Declaration",
     content: <Fourth />,
   },
 ];

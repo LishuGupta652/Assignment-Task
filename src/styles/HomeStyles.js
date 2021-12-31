@@ -186,8 +186,8 @@ export const HomeContainer = styled.div`
 `;
 
 export const AntContainer = styled.div`
+  margin-top: 100px;
   .container {
-    flex-grow: 1;
     margin: 0 auto;
     width: auto;
     height: 100%;
@@ -209,7 +209,9 @@ export const AntContainer = styled.div`
   .steps-content {
     min-height: 200px;
     margin-top: 16px;
-    padding-top: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     text-align: center;
     background-color: #fafafa;
     border: 1px dashed #e9e9e9;
