@@ -45,39 +45,28 @@ const Third = () => {
   }, [data]);
 
   return (
-    <Layout>
-      <form>
-        {/* email name phonenumber */}
-        <Input
-          placeholder="Enter your email..."
-          value={data.email}
-          type="email"
-          onChange={(e) => {
-            setData({ ...data, email: e.target.value });
-          }}
-          required
-        />
-        <Input
-          placeholder="Enter your name..."
-          type="text"
-          value={data.name}
-          onChange={(e) => {
-            setData({ ...data, name: e.target.value });
-          }}
-          required
-        />
-        <Input
-          placeholder="Enter your phone number..."
-          type="tel"
-          value={data.phoneNumber}
-          onChange={(e) => {
-            setData({ ...data, phoneNumber: e.target.value });
-          }}
-          required
-        />
-        {showError && <div className="error"> {error}</div>}
-      </form>
-    </Layout>
+    <form>
+      {/* password checkPassword */}
+      <Input
+        placeholder="Enter your Password..."
+        value={data.password}
+        type="password"
+        onChange={(e) => {
+          setData({ ...data, password: e.target.value });
+        }}
+        required
+      />
+      <Input
+        placeholder="Reenter your Password..."
+        type="password"
+        value={data.checkPassword}
+        onChange={(e) => {
+          setData({ ...data, checkPassword: e.target.value });
+        }}
+        required
+      />
+      {showError && <div className="error"> {error}</div>}
+    </form>
   );
 };
 

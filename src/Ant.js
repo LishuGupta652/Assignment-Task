@@ -5,6 +5,7 @@ import { AntContainer } from "./styles/HomeStyles";
 
 import "antd/dist/antd.css";
 import { First, Fourth, Second, Third } from "./component/AntPages";
+import { useGlobalSetState, useGlobalState } from "./context/globalContext";
 
 const { Step } = Steps;
 
@@ -30,12 +31,20 @@ const steps = [
 const Ant = () => {
   const [current, setCurrent] = React.useState(0);
 
+  const data = useGlobalState();
+  const setData = useGlobalSetState();
+
   const next = () => {
     setCurrent(current + 1);
   };
 
   const prev = () => {
     setCurrent(current - 1);
+  };
+
+  const handleSubmit = () => {
+    console.log(data);
+    message.success("Processing complete!");
   };
 
   return (
@@ -55,10 +64,7 @@ const Ant = () => {
               </Button>
             )}
             {current === steps.length - 1 && (
-              <Button
-                type="primary"
-                onClick={() => message.success("Processing complete!")}
-              >
+              <Button type="primary" onClick={() => handleSubmit()}>
                 Done
               </Button>
             )}
