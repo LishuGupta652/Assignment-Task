@@ -4,7 +4,7 @@ import * as yup from "yup";
 // Ant Design components
 import { Layout, Input } from "antd";
 import { useGlobalSetState, useGlobalState } from "../../context/globalContext";
-import { stringToBinary } from "./Utils";
+import { binaryToString, stringToBinary } from "./Utils";
 const { Header, Footer, Content } = Layout;
 
 const SpeechRecognition =
@@ -21,8 +21,7 @@ const Second = ({ error, setError }) => {
   const setData = useGlobalSetState();
 
   const [isListening, setIsListening] = React.useState(false);
-  const [note, setNote] = React.useState(null);
-
+  const [note, setNote] = React.useState();
   useEffect(() => {
     setError("");
     if (data.audio === "") {
