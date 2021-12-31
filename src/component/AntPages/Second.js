@@ -4,6 +4,7 @@ import * as yup from "yup";
 // Ant Design components
 import { Layout, Input } from "antd";
 import { useGlobalSetState, useGlobalState } from "../../context/globalContext";
+import { stringToBinary } from "./Utils";
 const { Header, Footer, Content } = Layout;
 
 const SpeechRecognition =
@@ -24,14 +25,14 @@ const Second = ({ error, setError }) => {
 
   useEffect(() => {
     setError("");
-    if (data.audio === null) {
+    if (data.audio === "") {
       setError("Please enter your note");
     }
     handleListen();
   }, [isListening]);
 
   const handleListen = () => {
-    if (data.audio === null) {
+    if (data.audio === "") {
       setError("Please enter your note");
     }
     if (isListening) {
@@ -52,8 +53,8 @@ const Second = ({ error, setError }) => {
         .join("");
 
       setNote(transcript);
-      setData({ ...data, audio: transcript });
-      console.log(data);
+      setData({ ...data, audio: stringToBinary(transcript) });
+
       mic.onerror = (event) => {
         console.log(event.error);
       };
