@@ -6,29 +6,25 @@ import { AntContainer } from "./styles/HomeStyles";
 import "antd/dist/antd.css";
 import { Container } from "./styles/GlobalStyles";
 import Home from "./component/Home";
-import First from "./component/First";
+import First from "./component/AntPages/First";
 const { Step } = Steps;
 
 const steps = [
   {
-    title: "name email ",
-    content: "First-content",
-    component: <First />,
+    title: "Basic Information",
+    content: <First />,
   },
   {
     title: "audio",
     content: "Second-content",
-    component: <First />,
   },
   {
     title: "password",
     content: "password",
-    component: <First />,
   },
   {
     title: "third",
     content: "Declaration",
-    component: <First />,
   },
 ];
 
