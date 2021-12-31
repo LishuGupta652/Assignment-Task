@@ -7,49 +7,71 @@ import { useGlobalSetState, useGlobalState } from "../../context/globalContext";
 import { AudioMutedOutlined } from "@ant-design/icons/lib/icons";
 const { Header, Footer, Content } = Layout;
 
-const Second = () => {
+const SpeechRecognition =
+  window.SpeechRecognition || window.webkitSpeechRecognition;
+const mic = new SpeechRecognition();
+
+mic.continous = true;
+mic.interimResults = true;
+mic.lang = "en-US";
+
+const Second = ({ error, setError }) => {
   const [showError, setShowEror] = React.useState(false);
-  const [error, setError] = React.useState("");
   const data = useGlobalState();
   const setData = useGlobalSetState();
 
-  let schema = yup.object().shape({
-    name: yup.string().required(),
-    email: yup.string().email().required(),
-    phone: yup
-      .number()
-      .typeError("That doesn't look like a phone number")
-      .positive("A phone number can't start with a minus")
-      .integer("A phone number can't include a decimal point")
-      .min(8)
-      .required("A phone number is required"),
-  });
+  const [isListening, setIsListening] = React.useState(false);
+  const [note, setNote] = React.useState(null);
 
   useEffect(() => {
-    schema
-      .isValid({
-        name: data.name,
-        email: data.email,
-        phone: data.phoneNumber,
-      })
-      .then((valid) => {
-        if (valid) {
-          setError("");
-          setShowEror(false);
-        } else {
-          setError("Please fill out all fields Correctly");
-        }
-      })
-      .catch(function (err) {
-        console.log(err.name, err.erors);
-      });
-  }, [data]);
+    handleListen();
+  }, [isListening]);
+
+  const handleListen = () => {
+    if (isListening) {
+      mic.start();
+      mic.onend = () => {
+        mic.start();
+      };
+    } else {
+      mic.stop();
+      mic.onend = () => {};
+    }
+
+    mic.onstart = () => {};
+    mic.onresult = (event) => {
+      const transcript = Array.from(event.results)
+        .map((result) => result[0])
+        .map((result) => result.transcript)
+        .join("");
+
+      setNote(transcript);
+      mic.onerror = (event) => {
+        console.log(event.error);
+      };
+    };
+  };
+
+  const handleSaveNote = () => {
+    if (note !== null) {
+      setData({ ...data, audio: note });
+    }
+  };
 
   return (
     <Layout>
       {/* Audio */}
       {/* start Recording */}
-      <AudioMutedOutlined />
+
+      <div className="box-buttons">
+        {!isListening ? <span>🎙</span> : <span>🔴</span>}
+        <button onClick={() => setIsListening((prev) => !prev)}>
+          {isListening ? "Stop" : "Start"}
+        </button>
+
+        <button onClick={() => setNote("")}>clear</button>
+      </div>
+      <div className="note">{note}</div>
     </Layout>
   );
 };

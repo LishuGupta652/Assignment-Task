@@ -35,6 +35,7 @@ const First = ({ error, setError }) => {
         if (valid) {
           setShowEror(false);
         } else {
+          setError("Please fill out all fields Correctly");
           setShowEror(true);
         }
       })

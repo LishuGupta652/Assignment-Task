@@ -226,6 +226,10 @@ export const AntContainer = styled.div`
   .steps-action {
     margin-top: 24px;
   }
+
+  .note {
+    margin: 20px;
+  }
 `;
 
 export const Container = styled.div`
